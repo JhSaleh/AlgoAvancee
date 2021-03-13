@@ -1,7 +1,7 @@
 package Algorithms;
 
+import Coins.Euros;
 import Coins.Pieces;
-import Coins.SpecialC;
 import Vectors.Solution;
 
 public class Greedy extends MoneyChangeProblem {
@@ -16,10 +16,12 @@ public class Greedy extends MoneyChangeProblem {
     public void solve(Solution solution, int montant) {
         solutionGreedy = new Solution(C);
         int i = 0;
-        while(montant > 0){
-            solutionGreedy.X[i] = montant / C.ensemblePieces.get(i);
-            montant = montant % C.ensemblePieces.get(i);
-            i++;
+        while(solutionGreedy.getMontant() < montant){
+            if(solutionGreedy.getMontant() + C.ensemblePieces.get(i) <= montant ){ //La pièce de plus grande valeur est donnée tant que c'est possible
+                solutionGreedy.X[i] += 1; //Ajout de la piece
+            } else  { //Sinon on passe à la pièce suivante
+                i++;
+            }
         }
     }
 
@@ -38,9 +40,9 @@ public class Greedy extends MoneyChangeProblem {
     }
 
     public static void main(String[] args) {
-        Pieces specialC = new SpecialC();
-        specialC.initCroissant();
-        Greedy test = new Greedy(specialC);
-        test.solveProblem(valeurBloquante);
+        Pieces euro = new Euros();
+        euro.init();
+        Greedy test = new Greedy(euro);
+        test.solveProblem(3307050);
     }
 }

@@ -32,7 +32,7 @@ public class Euros extends Pieces{
     @Override
     public void initCroissant() {
         ensemblePieces = new ArrayList<>();
-        ensemblePieces.add(unCentime); //2 centimes
+        ensemblePieces.add(unCentime); //1 centimes
         ensemblePieces.add(deuxCentimes); //2 centimes
         ensemblePieces.add(cinqCentimes); //5 centimes
         ensemblePieces.add(dixCentimes); //10 centimes

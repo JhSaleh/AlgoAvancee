@@ -7,6 +7,7 @@ import Vectors.Solution;
 public class TrialAndError extends MoneyChangeProblem{
 
     public static Solution solOpt;
+    public static int nbTour;
 
     public TrialAndError(Pieces inC){
         this.C = inC;
@@ -76,6 +77,7 @@ public class TrialAndError extends MoneyChangeProblem{
      * La dernière solution affichée est optimale.
      */
     public void solve(Solution solution, int montant) { //Nombre maximale d'appels récursifs : ??
+        nbTour++;
         Solution solutionActuel = new Solution();
         //Traitement du vecteur de solution
         if(solution == null){ //Initialisation au vecteur nul s'il s'agit du 1er appel
@@ -111,6 +113,7 @@ public class TrialAndError extends MoneyChangeProblem{
 
     public Solution solveProblem(int montant){
         //Initialisation de la valeur optimale
+        nbTour = 0;
         solOpt = new Solution(this.C, true);
         solOpt.afficheResultat();
         //Lancement de la résolution
@@ -126,10 +129,11 @@ public class TrialAndError extends MoneyChangeProblem{
 
     public static void main(String[] args) {
         Pieces euro = new Euros();
-        euro.init();
+        euro.initCroissant();
         euro.afficheValeur();
         TrialAndError test = new TrialAndError(euro);
-        test.solveProblem(500);
+        test.solveProblem(200);
         euro.afficheValeur();
+        System.out.println(nbTour);
     }
 }

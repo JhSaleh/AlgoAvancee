@@ -26,9 +26,13 @@ public class Solution {
         int tailleVecteur = this.C.ensemblePieces.size();
         X = new int[tailleVecteur];
 
-        if(true){
+        if(state){
             for(int i = 0; i < X.length; i++){
                 X[i] = Integer.MAX_VALUE;
+            }
+        } else {
+            for(int i = 0; i < X.length; i++) {
+                X[i] = 0;
             }
         }
     }
