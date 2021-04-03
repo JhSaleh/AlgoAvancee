@@ -120,6 +120,7 @@ public class Solution {
             }
         }
         System.out.print("> || Montant obtenu:"+getMontant()+" || Nb de pièces :"+getNbPieces()+"\n");
+        this.C.afficheValeur();
     }
 
     public static void main(String[] args) {

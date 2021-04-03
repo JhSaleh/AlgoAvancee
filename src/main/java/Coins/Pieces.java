@@ -47,7 +47,23 @@ public abstract class Pieces {
     /**
      * Renvoit la plus grande valeur de l'ensemble des pièces
      */
-    public double getMax(){
+    public int getMax(){
         return Collections.max(ensemblePieces);
+    }
+
+    /**
+     * Copie le type de piece
+     * @return
+     */
+    public Pieces copy(){
+        if (this instanceof Euros){
+            return new Euros();
+        } else if( this instanceof Dollars){
+            return new Dollars();
+        } else if (this instanceof SpecialC){
+            return new SpecialC();
+        } else {
+            return null;
+        }
     }
 }

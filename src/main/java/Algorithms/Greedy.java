@@ -43,6 +43,6 @@ public class Greedy extends MoneyChangeProblem {
         Pieces euro = new Euros();
         euro.init();
         Greedy test = new Greedy(euro);
-        test.solveProblem(3307050);
+        test.solveProblem(7453);
     }
 }
