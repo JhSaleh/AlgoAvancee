@@ -52,6 +52,19 @@ public abstract class Pieces {
     }
 
     /**
+     * Retour la plus grande valeur de l'ensemble entre l'indice from et la limite du tableau
+     * @param from
+     * @return
+     */
+    public int getMax(int from){
+        ArrayList<Integer> arrayList = new ArrayList<>();
+        for(int i = from; i<this.ensemblePieces.size(); i++){
+            arrayList.add(this.ensemblePieces.get(i));
+        }
+        return Collections.max(arrayList);
+    }
+
+    /**
      * Copie le type de piece
      * @return
      */
@@ -65,5 +78,12 @@ public abstract class Pieces {
         } else {
             return null;
         }
+    }
+
+    public static void main(String[] args) {
+        Pieces euro = new Euros();
+        euro.init();
+        euro.afficheValeur();
+        System.out.println(euro.getMax(5));
     }
 }

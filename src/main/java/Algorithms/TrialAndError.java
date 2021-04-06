@@ -83,9 +83,9 @@ public class TrialAndError extends MoneyChangeProblem{
      * @param solutionActuelle
      * @return
      */
-    public boolean evaluationCheminSolutionOptimale(Solution solutionActuelle, int montant){
+    public boolean evaluationCheminSolutionOptimale(Solution solutionActuelle, int montant, int from){
         int nbPiecesRestantes = (solOpt.getNbPieces() - solutionActuelle.getNbPieces());
-        int valeurPieceMax = solutionActuelle.C.getMax();
+        int valeurPieceMax = solutionActuelle.C.getMax(from);
 
         if( solutionActuelle.getMontant() + nbPiecesRestantes*valeurPieceMax < montant && solOptFound){ //On ne regarde ce critère que si la solution optimale existe déja
             return false;
@@ -101,8 +101,8 @@ public class TrialAndError extends MoneyChangeProblem{
      * @param montant
      * @return
      */
-    public boolean evaluationCheminEstimationSolutionOptimale(Solution solutionActuelle, int montant){
-        int valeurPieceMax = this.C.getMax();
+    public boolean evaluationCheminEstimationSolutionOptimale(Solution solutionActuelle, int montant, int from){
+        int valeurPieceMax = this.C.getMax(from);
         int majorationNbPieceOptimale = approximationNbPieceGreedy(montant); //Choix du majorant
         int nbPiecesRestantes = majorationNbPieceOptimale-solutionActuelle.getNbPieces();
         if(nbPiecesRestantes < 0 || solutionActuelle.getMontant() + nbPiecesRestantes*valeurPieceMax < montant){
@@ -160,7 +160,7 @@ public class TrialAndError extends MoneyChangeProblem{
     /**
      * La dernière solution affichée est optimale.
      */
-    public void solve(Solution solution, int montant, int max) { //Nombre maximale d'appels récursifs : ??
+    public void solve(Solution solution, int montant, int from) { //Nombre maximale d'appels récursifs : ??
         nbTour++;
         Solution solutionActuel = new Solution();
         //Traitement du vecteur de solution
@@ -172,7 +172,7 @@ public class TrialAndError extends MoneyChangeProblem{
         //Initialisation de variable
         double montantActuel = solutionActuel.getMontant();
 
-        for(int i = max; i < getTailleEnsemblePiece(); i++){ //on va travailler avec des tableaux de plus en plus petit pour éviter les transpositions, pour
+        for(int i = from; i < getTailleEnsemblePiece(); i++){ //on va travailler avec des tableaux de plus en plus petit pour éviter les transpositions, pour
             double ajout = this.C.ensemblePieces.get(i);
             if(satisfaisant(montantActuel, ajout, montant) && evaluation(solutionActuel)){ //satisfaisant
                 //Enregistrer
@@ -188,7 +188,7 @@ public class TrialAndError extends MoneyChangeProblem{
 
                 } else if(encorePossible(solutionActuel, montant)) { //condition d'élagage
                     //solutionActuel.afficheResultat();
-                    if(evaluationCheminSolutionOptimale(solutionActuel, montant) && evaluationCheminEstimationSolutionOptimale(solutionActuel, montant)){
+                    if(evaluationCheminSolutionOptimale(solutionActuel, montant, from) && evaluationCheminEstimationSolutionOptimale(solutionActuel, montant, from)){
                         solve(solutionActuel, montant, i);
                     }
                 }
@@ -218,10 +218,10 @@ public class TrialAndError extends MoneyChangeProblem{
 
     public static void main(String[] args) {
         Pieces euro = new Euros();
-        euro.initDecroissant();
+        euro.initCroissant();
         euro.afficheValeur();
         TrialAndError test = new TrialAndError(euro);
-        test.solveProblem(15153);
+        test.solveProblem(1543543);
         euro.afficheValeur();
         System.out.println("nb de tour :"+nbTour);
     }
