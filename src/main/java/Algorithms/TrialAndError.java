@@ -30,15 +30,9 @@ public class TrialAndError extends MoneyChangeProblem{
     }
 
     /**
-     * soltrouvé : montant actuel = montant
-     * satisfaisant : montant actuel <= montant
-     * enregistré : X[i] += 1
-     * défaire: X[i] -= 1
-     * condition d'élagage : nb de piece actuelle supérieur à celle d'avant et le montant est inférieur
-     *
-     * but : minimisé le nombre de pièce utilisé pour atteindre la solution
+     * Methode qui retiendra seulement les vecteurs optimaux
+     * But : minimisé le nombre de pièce utilisé pour atteindre la solution
      */
-
     public boolean meilleur(Solution solutionActuelle){
             if (solutionActuelle.getNbPieces() < solOpt.getNbPieces()) {
                 solOpt = solutionActuelle.copy(); //Mise à jour de la valeur optimal
@@ -51,13 +45,13 @@ public class TrialAndError extends MoneyChangeProblem{
 
     /**
      * Condition d'élagage qui examine les branches futurs
-     * Si la plus petite pièce ajouté au vecteur de solution actuelle aboutit est supérieur au montant demandé, l'exploration de branche supplémentaire est inutile
+     * Si la plus petite pièce ajoutée au vecteur de solution actuelle aboutit est supérieur au montant demandé, l'exploration de branche supplémentaire est inutile
      * @param solutionActuelle
      * @param montant
      * @return
      */
-    public boolean encorePossible(Solution solutionActuelle, double montant){
-        if(solutionActuelle.getMontant() + solutionActuelle.C.getMin() > montant){
+    public boolean encorePossible(Solution solutionActuelle, double montant, int from){
+        if(solutionActuelle.getMontant() + solutionActuelle.C.getMin(from) > montant){
             return false;
         }
         return true;
@@ -136,9 +130,9 @@ public class TrialAndError extends MoneyChangeProblem{
 
     /**
      *
-     * @param montantActuel
-     * @param ajout
-     * @param montant
+     * @param montantActuel montant du vecteur candidat
+     * @param ajout valeur de la pièce examinée
+     * @param montant montant visée
      * @return
      */
     public boolean satisfaisant(double montantActuel, double ajout, double montant){
@@ -186,7 +180,7 @@ public class TrialAndError extends MoneyChangeProblem{
                         solutionActuel.afficheResultat();
                     }
 
-                } else if(encorePossible(solutionActuel, montant)) { //condition d'élagage
+                } else if(encorePossible(solutionActuel, montant, from)) { //condition d'élagage
                     //solutionActuel.afficheResultat();
                     if(evaluationCheminSolutionOptimale(solutionActuel, montant, from) && evaluationCheminEstimationSolutionOptimale(solutionActuel, montant, from)){
                         solve(solutionActuel, montant, i);
@@ -221,7 +215,7 @@ public class TrialAndError extends MoneyChangeProblem{
         euro.initCroissant();
         euro.afficheValeur();
         TrialAndError test = new TrialAndError(euro);
-        test.solveProblem(1543543);
+        test.solveProblem(15453);
         euro.afficheValeur();
         System.out.println("nb de tour :"+nbTour);
     }

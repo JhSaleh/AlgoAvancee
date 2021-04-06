@@ -45,6 +45,17 @@ public abstract class Pieces {
     }
 
     /**
+     * Retour la plus grande valeur de l'ensemble entre l'indice from et la limite du tableau
+     */
+    public double getMin(int from){
+        ArrayList<Integer> arrayList = new ArrayList<>();
+        for(int i = from; i<this.ensemblePieces.size(); i++){
+            arrayList.add(this.ensemblePieces.get(i));
+        }
+        return Collections.min(arrayList);
+    }
+
+    /**
      * Renvoit la plus grande valeur de l'ensemble des pièces
      */
     public int getMax(){
