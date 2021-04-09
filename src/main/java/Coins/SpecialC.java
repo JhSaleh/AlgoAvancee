@@ -9,6 +9,10 @@ public class SpecialC extends Pieces{
     public static int cDeux = 4;
     public static int cTrois = 1;
 
+    public SpecialC(){
+        init();
+    }
+
     @Override
     public void init() {
         ArrayList<Integer> set = new ArrayList<>(Arrays.asList(cUn, cDeux, cTrois)); //Ensemble des pièces encore non pris
@@ -23,21 +27,5 @@ public class SpecialC extends Pieces{
             set.remove(pieceChoisit); //Retire la pièce des possibles à choisir
             tailleSet = set.size(); //Mise à jour du set
         }
-    }
-
-    @Override
-    public void initCroissant() {
-        ensemblePieces = new ArrayList<>(); //Vide la collection
-        ensemblePieces.add(cTrois);
-        ensemblePieces.add(cDeux);
-        ensemblePieces.add(cUn);
-    }
-
-    @Override
-    public void initDecroissant() {
-        ensemblePieces = new ArrayList<>(); //Vide la collection
-        ensemblePieces.add(cUn);
-        ensemblePieces.add(cDeux);
-        ensemblePieces.add(cTrois);
     }
 }

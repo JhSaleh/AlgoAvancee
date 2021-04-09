@@ -24,19 +24,19 @@ public class DynamicProgramming extends MoneyChangeProblem {
     }
 
     public void afficheSolution(int montant){
-        System.out.print("\nSol<");
+        //System.out.print("\nSol<");
         while (montant > 0) {
-            System.out.print(S[montant] + ",");
+            //System.out.print(S[montant] + ",");
             montant -= S[montant];
         }
-        System.out.print(">\n");
+        //System.out.print(">\n");
     }
 
     @Override
     public void solve(Solution solution, int montant) {
         A = new int[montant + 1]; //NBP
         S = new int[montant + 1]; //Pieces utilisées pour la solution
-        //Plus un pour atteidre la dénomination 500
+        //Plus un pour atteidre la dénomination
         A[0] = 0;
 
         int min;

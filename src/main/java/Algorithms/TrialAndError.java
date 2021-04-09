@@ -12,18 +12,11 @@ public class TrialAndError extends MoneyChangeProblem{
     /**
      * Entier indiquant le nombre de tour réalisé par l'algorithme
      */
-    public static int nbTour;
+    public int nbTour;
     /**
      * Booléen indiquant si première solution optimale local a été trouvé
      */
     public static boolean solOptFound;
-
-    /**
-     *
-     */
-    public static int currentMax;
-
-    public static int bestChangeYet;
 
     public TrialAndError(Pieces inC){
         this.C = inC;
@@ -81,7 +74,7 @@ public class TrialAndError extends MoneyChangeProblem{
         int nbPiecesRestantes = (solOpt.getNbPieces() - solutionActuelle.getNbPieces());
         int valeurPieceMax = solutionActuelle.C.getMax(from);
 
-        if( solutionActuelle.getMontant() + nbPiecesRestantes*valeurPieceMax < montant && solOptFound){ //On ne regarde ce critère que si la solution optimale existe déja
+        if(nbPiecesRestantes < 0 || (solutionActuelle.getMontant() + nbPiecesRestantes*valeurPieceMax < montant && solOptFound)){ //On ne regarde ce critère que si la solution optimale existe déja
             return false;
         }
         return true;
@@ -154,8 +147,8 @@ public class TrialAndError extends MoneyChangeProblem{
     /**
      * La dernière solution affichée est optimale.
      */
-    public void solve(Solution solution, int montant, int from) { //Nombre maximale d'appels récursifs : ??
-        nbTour++;
+    public void solve(Solution solution, int montant, int from) {
+        nbTour++; //compte le nombre d'appels récursifs
         Solution solutionActuel = new Solution();
         //Traitement du vecteur de solution
         if(solution == null){ //Initialisation au vecteur nul s'il s'agit du 1er appel
@@ -177,7 +170,9 @@ public class TrialAndError extends MoneyChangeProblem{
                 if(montantActuel == montant){ //soltrouvé
                     if(meilleur(solutionActuel)){
                         solOptFound = true; //Une première solution optimale local a été trouvé
-                        solutionActuel.afficheResultat();
+                        if(displayResult) {
+                            solutionActuel.afficheResultat();
+                        }
                     }
 
                 } else if(encorePossible(solutionActuel, montant, from)) { //condition d'élagage
@@ -196,28 +191,33 @@ public class TrialAndError extends MoneyChangeProblem{
     public Solution solveProblem(int montant){
         //Initialisation de la valeur optimale
         nbTour = 0;
-        bestChangeYet = 0;
+        solOptFound = false;
         solOpt = new Solution(this.C, true);
-        solOpt.afficheResultat();
+        if(displayResult) {
+            solOpt.afficheResultat();
+        }
         //Lancement de la résolution
         solve(null, montant, 0);
-        this.C.afficheValeur();
-        System.out.println("\n\n-----------------");
-        System.out.print("La solution optimale est : ");
-        solOpt.afficheResultat();
-        System.out.println("-----------------");
+        if(displayResult) {
+            this.C.afficheValeur();
+            System.out.println("\n\n-----------------");
+            System.out.print("La solution optimale est : ");
+            solOpt.afficheResultat();
+            System.out.println("-----------------");
+        }
+        solOpt.nbTour = nbTour;
         return solOpt.copy();
     }
 
 
     public static void main(String[] args) {
         Pieces euro = new Euros();
-        euro.initCroissant();
+        //euro.initCroissant();
         euro.afficheValeur();
         TrialAndError test = new TrialAndError(euro);
-        test.solveProblem(15453);
+        test.solveProblem(157453);
         euro.afficheValeur();
-        System.out.println("nb de tour :"+nbTour);
+        System.out.println("nb de tour :"+test.nbTour);
     }
 }
 //<37, 0, 1, 0, 0, 0, 1, 1> 7453

@@ -31,11 +31,13 @@ public class Greedy extends MoneyChangeProblem {
         //Initialisation de la valeur optimale
         //Lancement de la résolution
         solve(null, montant);
-        this.C.afficheValeur();
-        System.out.println("\n\n-----------------");
-        System.out.print("La solution est : ");
-        solutionGreedy.afficheResultat();
-        System.out.println("-----------------");
+        if(displayResult){
+            this.C.afficheValeur();
+            System.out.println("\n\n-----------------");
+            System.out.print("La solution est : ");
+            solutionGreedy.afficheResultat();
+            System.out.println("-----------------");
+        }
         return solutionGreedy.copy();
     }
 

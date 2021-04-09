@@ -12,28 +12,8 @@ public class Dollars extends Pieces {
     public static int cinqCents = 5;
     public static int unCent = 1;
 
-
-    @Override
-    public void initDecroissant() {
-        //Initialisation ensemble de pièces
-        ensemblePieces = new ArrayList<>(); //Vide la collection
-        ensemblePieces.add(unDollar); //1 dollar
-        ensemblePieces.add(cinquanteCents); //50 cents
-        ensemblePieces.add(vingtcinqCents); //20 cents
-        ensemblePieces.add(dixCents); //10 cents
-        ensemblePieces.add(cinqCents); //5 cents
-        ensemblePieces.add(unCent); //1 cent or penny
-    }
-
-    @Override
-    public void initCroissant() {
-        ensemblePieces = new ArrayList<>(); //Vide la collection
-        ensemblePieces.add(unCent); //1 cent or penny
-        ensemblePieces.add(cinqCents); //5 cents
-        ensemblePieces.add(dixCents); //10 cents
-        ensemblePieces.add(vingtcinqCents); //20 cents
-        ensemblePieces.add(cinquanteCents); //50 cents
-        ensemblePieces.add(unDollar); //1 dollar
+    public Dollars(){
+        init();
     }
 
     @Override

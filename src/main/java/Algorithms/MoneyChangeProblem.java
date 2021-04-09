@@ -5,6 +5,7 @@ import Vectors.Solution;
 
 public abstract class MoneyChangeProblem {
     public Pieces C; //Ensemble C de pieces représenté par un tableau, dont l'index reprèsente ci et l'accès donne la valeur di associée
+    public static boolean displayResult = true;
 
     /**
      * Méthode résolvant le probleme

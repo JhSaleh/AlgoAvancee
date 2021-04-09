@@ -14,34 +14,12 @@ public class Euros extends Pieces{
     public static int deuxCentimes = 2;
     public static int unCentime = 1;
 
-
-    @Override
-    public void initDecroissant() {
-        //Initialisation ensemble de pièces
-        ensemblePieces = new ArrayList<>(); //Vide la collection
-        ensemblePieces.add(deuxEuros); //2 euros
-        ensemblePieces.add(unEuro); //1 euro
-        ensemblePieces.add(cinquanteCentimes); //50 centimes
-        ensemblePieces.add(vingtCentimes); //20 centimes
-        ensemblePieces.add(dixCentimes); //10 centimes
-        ensemblePieces.add(cinqCentimes); //5 centimes
-        ensemblePieces.add(deuxCentimes); //2 centimes
-        ensemblePieces.add(unCentime); //2 centimes
+    /**
+     * Constructeur qui remplit l'ensemble de pièce de façon quelconque
+     */
+    public Euros(){
+        init();
     }
-
-    @Override
-    public void initCroissant() {
-        ensemblePieces = new ArrayList<>();
-        ensemblePieces.add(unCentime); //1 centimes
-        ensemblePieces.add(deuxCentimes); //2 centimes
-        ensemblePieces.add(cinqCentimes); //5 centimes
-        ensemblePieces.add(dixCentimes); //10 centimes
-        ensemblePieces.add(vingtCentimes); //20 centimes
-        ensemblePieces.add(cinquanteCentimes); //50 centimes
-        ensemblePieces.add(unEuro); //1 euro
-        ensemblePieces.add(deuxEuros); //2 euro
-    }
-
 
     @Override
     public void init(){
@@ -58,5 +36,11 @@ public class Euros extends Pieces{
             tailleSet = set.size(); //Mise à jour du set
         }
 
+    }
+
+    public static void main(String[] args) {
+        Pieces euro = new Euros();
+        euro.initCroissant();
+        euro.afficheValeur();
     }
 }

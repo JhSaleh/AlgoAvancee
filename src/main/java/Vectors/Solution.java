@@ -3,10 +3,13 @@ package Vectors;
 import Coins.Euros;
 import Coins.Pieces;
 
+import java.util.Arrays;
+import java.util.Objects;
+
 public class Solution {
     public Pieces C; //Ensemble de pièces
     public int[] X; //Vecteur de solution
-
+    public int nbTour; //Nb de tour pour atteindre la solution
 
 
     /**
@@ -67,6 +70,7 @@ public class Solution {
         for(int i = 0; i < solution.X.length; i++){
              this.X[i] = solution.X[i];
         }
+        this.nbTour = solution.nbTour;
     }
 
     /**
@@ -121,6 +125,26 @@ public class Solution {
         }
         System.out.print("> || Montant obtenu:"+getMontant()+" || Nb de pièces :"+getNbPieces()+"\n");
         this.C.afficheValeur();
+    }
+
+    /**
+     * Permet de comparer 2 vecteurs de solutions
+     * @param o
+     * @return
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Solution solution = (Solution) o;
+        return Objects.equals(C, solution.C) && Arrays.equals(X, solution.X);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = Objects.hash(C);
+        result = 31 * result + Arrays.hashCode(X);
+        return result;
     }
 
     public static void main(String[] args) {

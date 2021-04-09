@@ -19,12 +19,16 @@ public abstract class Pieces {
     /**
      * Méthode initialisant la liste des pièces dans un ordre croissant
      */
-    public abstract void initCroissant();
+    public void initCroissant(){
+        Collections.sort(ensemblePieces);
+    };
 
     /**
      * Méthode initialisant la liste des pièces dans un ordre décroissant
      */
-    public abstract void initDecroissant();
+    public void initDecroissant(){
+        Collections.sort(ensemblePieces, Collections.reverseOrder());
+    };
 
     /**
      * Affiche l'ensemble des pieces fournit
