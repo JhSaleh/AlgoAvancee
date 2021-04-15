@@ -25,6 +25,16 @@ public class Greedy extends MoneyChangeProblem {
         }
     }
 
+    public void solveT(Solution solution, int montant) { //nbpiece*log(montant) : majore par le plus grand log
+        solutionGreedy = new Solution(C);
+        int quotient = 0;
+        for(int i = 0; i < solutionGreedy.C.ensemblePieces.size(); i++){
+            quotient = montant/(solutionGreedy.C.ensemblePieces.get(i));
+            solutionGreedy.X[i] += quotient;
+            montant -= quotient*(solutionGreedy.C.ensemblePieces.get(i));
+        }
+    }
+
     @Override
     public Solution solveProblem(int montant) {
         C.initDecroissant(); //Garantit que les pièces seront choisie dans l'ordre décroissant
@@ -41,10 +51,27 @@ public class Greedy extends MoneyChangeProblem {
         return solutionGreedy.copy();
     }
 
+
+    public Solution solveProblemT(int montant) {
+        C.initDecroissant(); //Garantit que les pièces seront choisie dans l'ordre décroissant
+        //Initialisation de la valeur optimale
+        //Lancement de la résolution
+        solveT(null, montant);
+        if(displayResult){
+            this.C.afficheValeur();
+            System.out.println("\n\n-----------------");
+            System.out.print("La solution est : ");
+            solutionGreedy.afficheResultat();
+            System.out.println("-----------------");
+        }
+        return solutionGreedy.copy();
+    }
+
     public static void main(String[] args) {
         Pieces euro = new Euros();
         euro.init();
         Greedy test = new Greedy(euro);
         test.solveProblem(7453);
+        test.solveProblemT(7453);
     }
 }
