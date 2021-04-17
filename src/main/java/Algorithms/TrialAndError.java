@@ -97,7 +97,7 @@ public class TrialAndError extends MoneyChangeProblem{
         }
         return true;
     }
-//Il faut exclure les pieces plus utilisables, i.e. le maximum du sous-tableau
+
     /**
      * Donne une majoration / approximation du véritable résultat de la solution optimale via la méthode gloutonne
      * @param montant
@@ -136,12 +136,6 @@ public class TrialAndError extends MoneyChangeProblem{
     }
 
 
-    @Override
-    public void solve(Solution solution, int montant) {
-
-    }
-
-    //200 2 1 5 10 50
 
 
     /**
@@ -220,8 +214,3 @@ public class TrialAndError extends MoneyChangeProblem{
         System.out.println("nb de tour :"+test.nbTour);
     }
 }
-//<37, 0, 1, 0, 0, 0, 1, 1> 7453
-
-//On peut organiser les données pour voir la répétition des vecteurs
-//ajouter condition d'élagage : montant % valeurpiece max
-//certaine config de piece rend la recherche de solution impossible

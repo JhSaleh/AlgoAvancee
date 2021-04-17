@@ -11,8 +11,6 @@ public abstract class MoneyChangeProblem {
      * Méthode résolvant le probleme
      * La dernière solution affichée est celle optimale
      */
-    public abstract void solve(Solution solution, int montant);
-
     public abstract Solution solveProblem(int montant);
 
     /**

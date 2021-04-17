@@ -12,7 +12,7 @@ public class Greedy extends MoneyChangeProblem {
         this.C = inC;
     }
 
-    @Override
+
     public void solve(Solution solution, int montant) {
         solutionGreedy = new Solution(C);
         int i = 0;
