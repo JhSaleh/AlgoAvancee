@@ -93,31 +93,31 @@ public class TrialAndErrorTest extends Test {
 
         //Test 1
         test0 = new TrialAndErrorTest("Trial&ErrorAvecConditionElagageEnsembleDecroissantNbRecursion");
-        test0.complexiteAvecConditionElagage(euros, 100000, 2);
+        test0.complexiteAvecConditionElagage(euros, nbTest, 2);
 
 
         //Test 2
         test0 = new TrialAndErrorTest("Trial&ErrorAvecConditionElagageEnsembleCroissantNbRecursion");
-        test0.complexiteAvecConditionElagage(euros, 100000, 1);
+        test0.complexiteAvecConditionElagage(euros, nbTest, 1);
 
         //Test 3
         test0 = new TrialAndErrorTest("Trial&ErrorAvecConditionElagageEnsembleQuelconqueNbRecursion");
-        test0.complexiteAvecConditionElagage(euros, 100000, 0);
+        test0.complexiteAvecConditionElagage(euros, nbTest, 0);
 
 
 
         //Mesure Temps
         test0 = new TrialAndErrorTest("Trial&ErrorAvecConditionElagageEnsembleDecroissantTemps");
-        test0.complexiteTempsAvecConditionElagage(euros, 100000, 2);
+        test0.complexiteTempsAvecConditionElagage(euros, nbTest, 2);
 
 
         //Test 2
         test0 = new TrialAndErrorTest("Trial&ErrorAvecConditionElagageEnsembleCroissantTemps");
-        test0.complexiteTempsAvecConditionElagage(euros, 100000, 1);
+        test0.complexiteTempsAvecConditionElagage(euros, nbTest, 1);
 
         //Test 3
         test0 = new TrialAndErrorTest("Trial&ErrorAvecConditionElagageEnsembleQuelconqueTemps");
-        test0.complexiteTempsAvecConditionElagage(euros, 100000, 0);
+        test0.complexiteTempsAvecConditionElagage(euros, nbTest, 0);
 
      }
 }
