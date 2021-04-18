@@ -49,8 +49,41 @@ En reprenant l'exemple précèdent :
 ```
 Greedy greedy = new Greedy(euro);
 ```
+ou
+```
+DynamicProgramming dp = new DynamicProgramming(euro);
+```
+ou
+```
+TrialAndError trialAndError = new TrialAndError(euro);
+```
+
 
 L'instanciation de l'algorithme demande comme argument le système numéraire choisit.
+
+On peut donc chosir parmi les 3 algorithmes de résolution suivant :
+```
+* TrialAndError
+* DynamicProgramming
+* Greedy
+```
+
+#### Etape 4 : Execution d'un algorithme de résolution
+En reprenant l'exemple précèdent :
+```
+Solution solution = greedy.solveProblem(8);
+```
+ou
+```
+Solution solution = dp.solveProblem(8);
+```
+ou
+```
+Solution solution = trialAndError.solveProblem(8);
+```
+
+La solution est affichée sur le terminal et est recupérée dans l'objet **solution**.
+
 
 ## Partie Tests
 Pour vérifier les données des tests,
@@ -62,3 +95,5 @@ et sélectionner la classe désirée parmi :
 * DynamicProgrammingTest
 * GreedyTest
 ```
+
+Et sélectionnez les méthodes désirées.

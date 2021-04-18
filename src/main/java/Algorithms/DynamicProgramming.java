@@ -105,6 +105,12 @@ public class DynamicProgramming extends MoneyChangeProblem {
                 }
                 System.out.print("\n");
             }
+
+            System.out.println("\n\n-----------------");
+            System.out.print("La solution optimale est : ");
+            solutionDP.afficheResultat();
+            System.out.println("-----------------");
+
         }
         return solutionDP.copy();
     }
@@ -114,6 +120,5 @@ public class DynamicProgramming extends MoneyChangeProblem {
         euros.init();
         DynamicProgramming test = new DynamicProgramming(euros);
         Solution solution = test.solveProblem(8);
-        solution.afficheResultat();
     }
 }

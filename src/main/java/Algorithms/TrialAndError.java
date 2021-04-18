@@ -213,7 +213,6 @@ public class TrialAndError extends MoneyChangeProblem{
         euro.afficheValeur();
         TrialAndError test = new TrialAndError(euro);
         test.solveProblem(157453);
-        euro.afficheValeur();
         System.out.println("nb de tour :"+test.nbTour);
     }
 }
