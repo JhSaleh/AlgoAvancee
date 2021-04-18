@@ -60,15 +60,15 @@ public class DynamicProgrammingTest extends Test {
         DynamicProgrammingTest test0;
 
         //Test 1
-        test0 = new DynamicProgrammingTest("DynamicProgrammingTestAvecConditionElagageEnsembleDecroissantTemps");
+        test0 = new DynamicProgrammingTest("DynamicProgrammingTestEnsembleDecroissantTemps");
         test0.complexiteTempsDynamicProgramming(euros, 100000, 2);
 
         //Test 2
-        test0 = new DynamicProgrammingTest("DynamicProgrammingTestAvecConditionElagageEnsembleCroissantTemps");
+        test0 = new DynamicProgrammingTest("DynamicProgrammingTestEnsembleCroissantTemps");
         test0.complexiteTempsDynamicProgramming(euros, 100000, 1);
 
         //Test 3
-        test0 = new DynamicProgrammingTest("DynamicProgrammingTestAvecConditionElagageEnsembleQuelconqueTemps");
+        test0 = new DynamicProgrammingTest("DynamicProgrammingTestEnsembleQuelconqueTemps");
         test0.complexiteTempsDynamicProgramming(euros, 100000, 0);
     }
 }

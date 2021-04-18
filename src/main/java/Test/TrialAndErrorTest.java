@@ -11,6 +11,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class TrialAndErrorTest extends Test {
+    /**
+     * Désigne le nombre de tests
+     */
+    public static int nbTest = 1000000;
 
     /**
      * Va créer un fichier csv qui permettra de grapher les résultats de compléxités plus tard
@@ -88,9 +92,8 @@ public class TrialAndErrorTest extends Test {
         TrialAndErrorTest test0;
 
         //Test 1
-        /*
         test0 = new TrialAndErrorTest("Trial&ErrorAvecConditionElagageEnsembleDecroissantNbRecursion");
-        test0.complexiteAvecConditionElagage(euros, 50000, 2);
+        test0.complexiteAvecConditionElagage(euros, 100000, 2);
 
 
         //Test 2
@@ -100,14 +103,14 @@ public class TrialAndErrorTest extends Test {
         //Test 3
         test0 = new TrialAndErrorTest("Trial&ErrorAvecConditionElagageEnsembleQuelconqueNbRecursion");
         test0.complexiteAvecConditionElagage(euros, 100000, 0);
-        */
+
 
 
         //Mesure Temps
         test0 = new TrialAndErrorTest("Trial&ErrorAvecConditionElagageEnsembleDecroissantTemps");
-        test0.complexiteTempsAvecConditionElagage(euros, 50000, 2);
+        test0.complexiteTempsAvecConditionElagage(euros, 100000, 2);
 
-        /*
+
         //Test 2
         test0 = new TrialAndErrorTest("Trial&ErrorAvecConditionElagageEnsembleCroissantTemps");
         test0.complexiteTempsAvecConditionElagage(euros, 100000, 1);
@@ -115,6 +118,6 @@ public class TrialAndErrorTest extends Test {
         //Test 3
         test0 = new TrialAndErrorTest("Trial&ErrorAvecConditionElagageEnsembleQuelconqueTemps");
         test0.complexiteTempsAvecConditionElagage(euros, 100000, 0);
-        */
+
      }
 }

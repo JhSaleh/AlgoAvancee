@@ -18,6 +18,11 @@ public class TrialAndError extends MoneyChangeProblem{
      */
     public static boolean solOptFound;
 
+    /**
+     * Boolèen gérant toutes les conditions d'élagages
+     */
+    public static boolean avecConditionElagage = true;
+
     public TrialAndError(Pieces inC){
         this.C = inC;
     }
