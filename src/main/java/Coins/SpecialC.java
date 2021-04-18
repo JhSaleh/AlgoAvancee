@@ -5,10 +5,16 @@ import java.util.Arrays;
 import java.util.Random;
 
 public class SpecialC extends Pieces{
+    /**
+     * Valeur du système numéraire
+     */
     public static int cUn = 6;
     public static int cDeux = 4;
     public static int cTrois = 1;
 
+    /**
+     * Constructeur qui remplit l'ensemble de pièce de façon quelconque
+     */
     public SpecialC(){
         init();
     }

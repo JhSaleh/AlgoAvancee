@@ -4,7 +4,14 @@ import Coins.Pieces;
 import Vectors.Solution;
 
 public abstract class MoneyChangeProblem {
-    public Pieces C; //Ensemble C de pieces représenté par un tableau, dont l'index reprèsente ci et l'accès donne la valeur di associée
+    /**
+     * Ensemble C de pieces représenté par un tableau, dont l'indice reprèsente ci et l'accès donne la valeur di associée
+     */
+    public Pieces C;
+
+    /**
+     * Booléen permettant l'affichage des résultats de solution des algorithmes
+     */
     public static boolean displayResult = true;
 
     /**
@@ -20,5 +27,4 @@ public abstract class MoneyChangeProblem {
     public int getTailleEnsemblePiece(){
         return C.ensemblePieces.size();
     }
-
 }

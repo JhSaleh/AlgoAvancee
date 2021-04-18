@@ -5,6 +5,9 @@ import java.util.Arrays;
 import java.util.Random;
 
 public class Euros extends Pieces{
+    /**
+     * Valeur du système numéraire
+     */
     public static int deuxEuros = 200;
     public static int unEuro = 100;
     public static int cinquanteCentimes = 50;
@@ -36,11 +39,5 @@ public class Euros extends Pieces{
             tailleSet = set.size(); //Mise à jour du set
         }
 
-    }
-
-    public static void main(String[] args) {
-        Pieces euro = new Euros();
-        euro.initCroissant();
-        euro.afficheValeur();
     }
 }

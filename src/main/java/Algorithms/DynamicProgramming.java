@@ -1,9 +1,7 @@
 package Algorithms;
 
-import Coins.Euros;
 import Coins.Pieces;
 import Coins.SpecialC;
-import Coins.SpecialCPrime;
 import Vectors.Solution;
 
 public class DynamicProgramming extends MoneyChangeProblem {
@@ -30,7 +28,7 @@ public class DynamicProgramming extends MoneyChangeProblem {
     }
 
     /**
-     * Initialise les deux structures tabulaires : nombres de pièces minimales et vecteurs solutions dont le nombre de pièce est minimale
+     * Initialise les deux structures tabulaires : nombres de pièces minimales et les vecteurs solutions dont le nombre de pièce est minimal
      * @param montant
      */
     public void initialisationTableaux(int montant){
@@ -60,6 +58,11 @@ public class DynamicProgramming extends MoneyChangeProblem {
         }
     }
 
+    /**
+     * Algorithme Programmation Dynamique
+     * @param solution
+     * @param montant
+     */
     public void solve(Solution solution, int montant){
         int nbPiece = this.C.ensemblePieces.size();
 
@@ -92,10 +95,10 @@ public class DynamicProgramming extends MoneyChangeProblem {
 
     @Override
     public Solution solveProblem(int montant) {
-        solutionDP = new Solution(C, false);
-        initialisationTableaux(montant);
-        solve(null, montant);
-        if(displayResult) {
+        solutionDP = new Solution(C, false); //Initialisation du vecteur solution
+        initialisationTableaux(montant); //Initialisation des structures tabulaires
+        solve(null, montant); //Résolution selon l'algorithme de programmation dynamique
+        if(displayResult) { //Booléen pour permettre l'affichage des résultats
             for (int i = 0; i < T.length; i++) {
                 for (int j = 0; j < T[0].length; j++) {
                     System.out.print("|" + (int) T[i][j]);

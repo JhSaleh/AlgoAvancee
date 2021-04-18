@@ -133,6 +133,12 @@ public class GreedyTest extends Test {
         solutionGreedy.afficheResultat();
     }
 
+    /**
+     * Méthode réalisant des benchmarks de compléxité pour l'algorithme glouton
+     * @param pieces
+     * @param montant
+     * @param stateSet
+     */
     public void complexiteTempsGreedy(Pieces pieces, int montant, int stateSet) {
         long startTime = 0;
         long endTime = 0;

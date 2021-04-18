@@ -19,17 +19,23 @@ public class Greedy extends MoneyChangeProblem {
         this.C = inC;
     }
 
-    public void solve(Solution solution, int montant) { //nbpiece*log(montant) : majore par le plus grand log
+    /**
+     * Algorithme Glouton
+     * @param solution
+     * @param montant
+     */
+    public void solve(Solution solution, int montant) {
         this.C.initDecroissant(); //Tri de l'ensemble de pièce dans l'ordre de valeur décroissante
         solutionGreedy = new Solution(C);
+        //Initialisation
         int quotient = 0;
         int i = 0;
         int nbPiece = solutionGreedy.C.ensemblePieces.size();
         int valeurPiece = 0;
         while(i < nbPiece && montant > 0){
-            valeurPiece = solutionGreedy.C.ensemblePieces.get(i);
-            quotient = montant/(valeurPiece);
-            solutionGreedy.X[i] += quotient;
+            valeurPiece = solutionGreedy.C.ensemblePieces.get(i); //On récupère la valeur de la pièce
+            quotient = montant/(valeurPiece); //On récupère autant de pièce de grande valeur qu'on peut
+            solutionGreedy.X[i] += quotient; //On ajoute les pièces à la solution
             montant -= quotient*(valeurPiece);
             i++;
         }
@@ -37,10 +43,9 @@ public class Greedy extends MoneyChangeProblem {
 
     @Override
     public Solution solveProblem(int montant) {
-        //Initialisation de la valeur optimale
         //Lancement de la résolution
         solve(null, montant);
-        if(displayResult){
+        if(displayResult){ //Booléen pour permettre l'affichage des résultats
             this.C.afficheValeur();
             System.out.println("\n\n-----------------");
             System.out.print("La solution est : ");

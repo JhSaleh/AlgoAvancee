@@ -5,6 +5,9 @@ import java.util.Arrays;
 import java.util.Random;
 
 public class Dollars extends Pieces {
+    /**
+     * Valeur du système numéraire
+     */
     public static int unDollar = 100;
     public static int cinquanteCents = 50;
     public static int vingtcinqCents = 25;
@@ -12,6 +15,9 @@ public class Dollars extends Pieces {
     public static int cinqCents = 5;
     public static int unCent = 1;
 
+    /**
+     * Constructeur qui remplit l'ensemble de pièce de façon quelconque
+     */
     public Dollars(){
         init();
     }

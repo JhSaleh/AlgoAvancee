@@ -5,6 +5,9 @@ import java.util.Random;
 
 
 public class SpecialCPrime extends Pieces{
+        /**
+         * Valeur du système numéraire
+         */
         public static int p50 = 50;
         public static int p30 = 30;
         public static int p10 = 10;
@@ -12,6 +15,9 @@ public class SpecialCPrime extends Pieces{
         public static int p3 = 3;
         public static int p1 = 1;
 
+        /**
+         * Constructeur qui remplit l'ensemble de pièce de façon quelconque
+         */
         public SpecialCPrime(){
             init();
         }

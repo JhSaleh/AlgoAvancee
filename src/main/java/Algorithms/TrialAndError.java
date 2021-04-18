@@ -10,14 +10,13 @@ public class TrialAndError extends MoneyChangeProblem{
      */
     public static Solution solOpt;
     /**
-     * Entier indiquant le nombre de tour réalisé par l'algorithme
+     * Entier indiquant le nombre de tour/récursion réalisé par l'algorithme
      */
     public int nbTour;
     /**
-     * Booléen indiquant si première solution optimale local a été trouvé
+     * Booléen indiquant si une première solution optimale locale a été trouvée
      */
     public static boolean solOptFound;
-
     /**
      * Boolèen gérant toutes les conditions d'élagages
      */
@@ -34,8 +33,6 @@ public class TrialAndError extends MoneyChangeProblem{
     public boolean meilleur(Solution solutionActuelle){
             if (solutionActuelle.getNbPieces() < solOpt.getNbPieces()) {
                 solOpt = solutionActuelle.copy(); //Mise à jour de la valeur optimal
-                //System.out.println("-----------------------------------Sol Opt :");
-                //solOpt.afficheResultat();
                 return true;
             }
             return false;
@@ -43,7 +40,7 @@ public class TrialAndError extends MoneyChangeProblem{
 
     /**
      * Condition d'élagage qui examine les branches futurs
-     * Si la plus petite pièce ajoutée au vecteur de solution actuelle aboutit est supérieur au montant demandé, l'exploration de branche supplémentaire est inutile
+     * Si la plus petite pièce ajoutée au vecteur de solution actuelle est supérieur au montant demandé, l'exploration de branches supplémentaires est inutile
      * @param solutionActuelle
      * @param montant
      * @return
@@ -89,14 +86,15 @@ public class TrialAndError extends MoneyChangeProblem{
      * Quatrième condition d'élagage
      * Condition d'élagage basé sur la valeur de la majoration du nombre de pieces optimales, qui va regardé si un chemin est
      * atteignable pour le nombre restant de pieces. Cela permet d'éliminer une grande partie des branches au tout début du programme
+     * quand la solution optimale n'a pas encore été trouvé
      * @param solutionActuelle
      * @param montant
      * @return
      */
     public boolean evaluationCheminEstimationSolutionOptimale(Solution solutionActuelle, int montant, int from){
         int valeurPieceMax = this.C.getMax(from);
-        int majorationNbPieceOptimale = approximationNbPieceGreedy(montant); //Choix du majorant
-        int nbPiecesRestantes = majorationNbPieceOptimale-solutionActuelle.getNbPieces();
+        int majorationNbPieceOptimale = approximationNbPieceGreedy(montant); //Choix du majorant, Donne le nombre de pièce pour un montant donné selon la méthode gloutonne
+        int nbPiecesRestantes = majorationNbPieceOptimale-solutionActuelle.getNbPieces(); //Degrée de liberté de pièce pour espérer faire mieux que la solution gloutonne
         if(nbPiecesRestantes < 0 || solutionActuelle.getMontant() + nbPiecesRestantes*valeurPieceMax < montant){
             return false;
         }
@@ -104,7 +102,7 @@ public class TrialAndError extends MoneyChangeProblem{
     }
 
     /**
-     * Donne une majoration / approximation du véritable résultat de la solution optimale via la méthode gloutonne
+     * Donne une majoration / approximation du véritable résultat de la solution optimale via l'algorithme glouton
      * @param montant
      * @return
      */
@@ -127,7 +125,6 @@ public class TrialAndError extends MoneyChangeProblem{
 
 
     /**
-     *
      * @param montantActuel montant du vecteur candidat
      * @param ajout valeur de la pièce examinée
      * @param montant montant visée
@@ -141,10 +138,12 @@ public class TrialAndError extends MoneyChangeProblem{
     }
 
 
-
-
     /**
+     * Algorithme Essais successifs
      * La dernière solution affichée est optimale.
+     * @param solution
+     * @param montant
+     * @param from
      */
     public void solve(Solution solution, int montant, int from) {
         nbTour++; //compte le nombre d'appels récursifs
@@ -188,16 +187,15 @@ public class TrialAndError extends MoneyChangeProblem{
     }
 
     public Solution solveProblem(int montant){
-        //Initialisation de la valeur optimale
-        nbTour = 0;
-        solOptFound = false;
-        solOpt = new Solution(this.C, true);
+        nbTour = 0; //Initialisation du nombre de récursion
+        solOptFound = false; //La solution optimale n'a pas encore été trouvé
+        solOpt = new Solution(this.C, true); //Initialisation du vecteur solution
         if(displayResult) {
             solOpt.afficheResultat();
         }
         //Lancement de la résolution
         solve(null, montant, 0);
-        if(displayResult) {
+        if(displayResult) { //Booléen pour permettre l'affichage des résultats
             this.C.afficheValeur();
             System.out.println("\n\n-----------------");
             System.out.print("La solution optimale est : ");
@@ -211,7 +209,7 @@ public class TrialAndError extends MoneyChangeProblem{
 
     public static void main(String[] args) {
         Pieces euro = new Euros();
-        //euro.initCroissant();
+        euro.initDecroissant();
         euro.afficheValeur();
         TrialAndError test = new TrialAndError(euro);
         test.solveProblem(157453);

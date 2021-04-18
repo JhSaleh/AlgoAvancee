@@ -30,7 +30,12 @@ public class DynamicProgrammingTest extends Test {
         }
     }
 
-
+    /**
+     * Méthode réalisant des benchmarks de compléxité pour l'algorithme de programmation dynamique
+     * @param pieces
+     * @param montant
+     * @param stateSet
+     */
     public void complexiteTempsDynamicProgramming(Pieces pieces, int montant, int stateSet){
         long startTime = 0;
         long endTime = 0;

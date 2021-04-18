@@ -7,10 +7,20 @@ import java.util.Arrays;
 import java.util.Objects;
 
 public class Solution {
-    public Pieces C; //Ensemble de pièces
-    public int[] X; //Vecteur de solution
-    public int nbTour; //Nb de tour pour atteindre la solution
-
+    /**
+     * Ensemble de pièces
+     */
+    public Pieces C;
+    /**
+     * Vecteur de solution
+     * chaque entier d'indice i du tableau représente un nombre de pièce
+     * correspondant à la valeur di de l'ensemble des pièce C
+     */
+    public int[] X;
+    /**
+     * Nombre de tour pour atteindre la solution
+     */
+    public int nbTour;
 
     /**
      * Simple constructeur vide, cas null
@@ -19,7 +29,8 @@ public class Solution {
 
 
     /**
-     * Version pour les essaies successifs optimaux
+     * Constructeur initialisant le vecteur soit à
+     * valeur 0, soit valeur maximale/infini
      * @param inC
      * @param state
      */
@@ -31,7 +42,7 @@ public class Solution {
 
         if(state){
             for(int i = 0; i < X.length; i++){
-                X[i] = Integer.MAX_VALUE;
+                X[i] = Integer.MAX_VALUE; //Représente l'infini, soit l'absence de solution
             }
         } else {
             for(int i = 0; i < X.length; i++) {
@@ -40,6 +51,11 @@ public class Solution {
         }
     }
 
+    /**
+     * Constructeur simple
+     * @param inC
+     * @param X
+     */
     public Solution(Pieces inC, int[] X){
         this.C = inC;
         this.X = X;
@@ -47,7 +63,7 @@ public class Solution {
 
 
     /**
-     * Initialise un vecteur solution en tant que vecteur nul
+     * Initialise un vecteur solution en tant que vecteur vide
      * @param inC
      */
     public Solution(Pieces inC){
@@ -111,7 +127,7 @@ public class Solution {
     }
 
     /**
-     * Affiche le vecteur de résultat
+     * Affiche le résultat du vecteur de solution
      */
     public void afficheResultat(){
         //this.C.afficheValeur();
