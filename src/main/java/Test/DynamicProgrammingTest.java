@@ -13,6 +13,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class DynamicProgrammingTest extends Test {
+    public static int nbTest = 1000000;
 
     /**
      * Va créer un fichier csv qui permettra de grapher les résultats de compléxités plus tard
@@ -61,14 +62,14 @@ public class DynamicProgrammingTest extends Test {
 
         //Test 1
         test0 = new DynamicProgrammingTest("DynamicProgrammingTestEnsembleDecroissantTemps");
-        test0.complexiteTempsDynamicProgramming(euros, 100000, 2);
+        test0.complexiteTempsDynamicProgramming(euros, nbTest, 2);
 
         //Test 2
         test0 = new DynamicProgrammingTest("DynamicProgrammingTestEnsembleCroissantTemps");
-        test0.complexiteTempsDynamicProgramming(euros, 100000, 1);
+        test0.complexiteTempsDynamicProgramming(euros, nbTest, 1);
 
         //Test 3
         test0 = new DynamicProgrammingTest("DynamicProgrammingTestEnsembleQuelconqueTemps");
-        test0.complexiteTempsDynamicProgramming(euros, 100000, 0);
+        test0.complexiteTempsDynamicProgramming(euros, nbTest, 0);
     }
 }
