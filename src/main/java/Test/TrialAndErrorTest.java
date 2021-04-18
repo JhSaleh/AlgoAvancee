@@ -14,7 +14,7 @@ public class TrialAndErrorTest extends Test {
     /**
      * Désigne le nombre de tests
      */
-    public static int nbTest = 1000000;
+    public static int nbTest = 100000;
 
     /**
      * Va créer un fichier csv qui permettra de grapher les résultats de compléxités plus tard
