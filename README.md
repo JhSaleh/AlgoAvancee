@@ -32,7 +32,7 @@ On peut créer ou choisir un sytème numéraire parmi les classes qui héritent 
 * SpecialCPrime
 ```
 #### Etape 2 : Initialisation de l'ordre des pièces 
-En reprenant l'exemple précèdent :
+En reprenant l'exemple précédent :
 ```
 euro.init();
 ```
@@ -44,7 +44,7 @@ On peut choisir parmi plusieurs méthodes d'initialisation :
 * initDecroissant() //Méthode initialisant la liste des pièces dans un ordre décroissant
 ```
 #### Etape 3 : Choix d'un algorithme de résolution
-En reprenant l'exemple précèdent, cela revient à écrire la ligne :
+En reprenant l'exemple précédent, cela revient à écrire la ligne :
 
 ```
 Greedy greedy = new Greedy(euro);
@@ -69,7 +69,7 @@ On peut donc chosir parmi les 3 algorithmes de résolution des classes suivantes
 ```
 
 #### Etape 4 : Execution d'un algorithme de résolution
-En reprenant l'exemple précèdent, on applique la méthode **solveProblem(montant)**, par exemple où montant = 8:
+En reprenant l'exemple précédent, on applique la méthode **solveProblem(montant)**, par exemple où montant = 8:
 ```
 Solution solution = greedy.solveProblem(8);
 ```
