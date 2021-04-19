@@ -173,6 +173,7 @@ public class GreedyTest extends Test {
     public static void main(String[] args) {
         Euros euros = new Euros();
         GreedyTest test0;
+
         //Test 1
         test0 = new GreedyTest("GreedyEnsembleDecroissantTemps");
         test0.complexiteTempsGreedy(euros, 100000, 2);
@@ -185,6 +186,6 @@ public class GreedyTest extends Test {
         test0 = new GreedyTest("GreedyEnsembleQuelconqueTemps");
         test0.complexiteTempsGreedy(euros, 100000, 0);
 
-        testNumericalSystemC();
+        //testNumericalSystemC();
     }
 }
