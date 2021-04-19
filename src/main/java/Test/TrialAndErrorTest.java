@@ -17,6 +17,11 @@ public class TrialAndErrorTest extends Test {
     public static int nbTest = 100000;
 
     /**
+     * Désigne le nombre de tests dans le cas sans élagage
+     */
+    public static int nbTestSansElagage = 100;
+
+    /**
      * Va créer un fichier csv qui permettra de grapher les résultats de compléxités plus tard
      * @param fileName
      */
@@ -31,13 +36,72 @@ public class TrialAndErrorTest extends Test {
         }
     }
 
-    public void complexiteSansConditionElagage(){
+    /**
+     * Mesure la compléxité de l'algorithme en désactivant toutes les conditions d'élagage
+     * @param pieces
+     * @param montant
+     * @param stateSet
+     */
+    public void complexiteSansConditionElagage(Pieces pieces, int montant, int stateSet){
+        TrialAndError trialAndError;
+        Solution solution;
+        enteteTour();
+        switch (stateSet){
+            case 0: break; //par défaut quelconque
+            case 1: pieces.initCroissant(); break;
+            case 2: pieces.initDecroissant(); break;
+        }
 
+        for(int i = 0; i < montant; i++) {
+            TrialAndError.displayResult = false;
+            TrialAndError.conditionElagage = false; //Désactivation des conditions d'élagage
+            trialAndError = new TrialAndError(pieces);
+            solution =  trialAndError.solveProblem(i);
+            writeLine(i, solution.nbTour);
+        }
+        stopWriting();
+        System.out.println(this.fileName + "done !");
     }
 
     /**
-     * Ensemble de pièce initialisé n'importe comment
+     * Mesure la complexité de l'algorithme en activant qu'une seule condition d'élagage à la fois
      * @param pieces
+     * @param montant
+     * @param stateSet
+     * @param numeroConditionElagage
+     */
+    public void complexiteAvecUneSeuleConditionElagage(Pieces pieces, int montant, int stateSet, int numeroConditionElagage){
+        TrialAndError trialAndError;
+        Solution solution;
+        enteteTour();
+        switch (stateSet){
+            case 0: break; //par défaut quelconque
+            case 1: pieces.initCroissant(); break;
+            case 2: pieces.initDecroissant(); break;
+        }
+
+        for(int i = 0; i < montant; i++) {
+            TrialAndError.displayResult = false;
+            TrialAndError.conditionElagage = true;
+            switch (numeroConditionElagage){
+                case 0: TrialAndError.conditionElagageInterditDuplicat = true; TrialAndError.conditionElagageEncorePossible = false; TrialAndError.conditionElagageEvaluation = false; TrialAndError.conditionElagageEvaluationCheminSolutionOptimale = false; TrialAndError.conditionElagageEvaluationCheminEstimationSolutionOptimale = false; break;
+                case 1: TrialAndError.conditionElagageInterditDuplicat = false; TrialAndError.conditionElagageEncorePossible = true; TrialAndError.conditionElagageEvaluation = false; TrialAndError.conditionElagageEvaluationCheminSolutionOptimale = false; TrialAndError.conditionElagageEvaluationCheminEstimationSolutionOptimale = false; break;
+                case 2: TrialAndError.conditionElagageInterditDuplicat = false; TrialAndError.conditionElagageEncorePossible = false; TrialAndError.conditionElagageEvaluation = true; TrialAndError.conditionElagageEvaluationCheminSolutionOptimale = false; TrialAndError.conditionElagageEvaluationCheminEstimationSolutionOptimale = false; break;
+                case 3: TrialAndError.conditionElagageInterditDuplicat = false; TrialAndError.conditionElagageEncorePossible = false; TrialAndError.conditionElagageEvaluation = false; TrialAndError.conditionElagageEvaluationCheminSolutionOptimale = true; TrialAndError.conditionElagageEvaluationCheminEstimationSolutionOptimale = false; break;
+                case 4: TrialAndError.conditionElagageInterditDuplicat = false; TrialAndError.conditionElagageEncorePossible = false; TrialAndError.conditionElagageEvaluation = false; TrialAndError.conditionElagageEvaluationCheminSolutionOptimale = false; TrialAndError.conditionElagageEvaluationCheminEstimationSolutionOptimale = true; break;
+                default: System.out.println("Les exceptions vont de 0 à 4."); break;
+            }
+            trialAndError = new TrialAndError(pieces);
+            solution =  trialAndError.solveProblem(i);
+            writeLine(i, solution.nbTour);
+        }
+        stopWriting();
+        System.out.println(this.fileName + "done !");
+    }
+
+    /**
+     * Mesure la complexité en nombre d'appel
+     * @param pieces Ensemble de pièce initialisé n'importe comment
      * @param montant
      * @param stateSet determine l'organisation de l'ensemble pour les test, 0 : 1 ensemble quelconque, 1 : ensemble ordre croissant, 2 ensemble ordre décroissant
      */
@@ -61,6 +125,12 @@ public class TrialAndErrorTest extends Test {
         System.out.println(this.fileName + "done !");
     }
 
+    /**
+     * Mesure la compléxité temporelle de la méthode
+     * @param pieces
+     * @param montant
+     * @param stateSet
+     */
     public void complexiteTempsAvecConditionElagage(Pieces pieces, int montant, int stateSet){
         long startTime = 0;
         long endTime = 0;
@@ -105,7 +175,6 @@ public class TrialAndErrorTest extends Test {
         test0.complexiteAvecConditionElagage(euros, nbTest, 0);
 
 
-
         //Mesure Temps
         test0 = new TrialAndErrorTest("Trial&ErrorAvecConditionElagageEnsembleDecroissantTemps");
         test0.complexiteTempsAvecConditionElagage(euros, nbTest, 2);
@@ -118,6 +187,5 @@ public class TrialAndErrorTest extends Test {
         //Test 3
         test0 = new TrialAndErrorTest("Trial&ErrorAvecConditionElagageEnsembleQuelconqueTemps");
         test0.complexiteTempsAvecConditionElagage(euros, nbTest, 0);
-
-     }
+    }
 }

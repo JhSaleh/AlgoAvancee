@@ -20,7 +20,38 @@ public class TrialAndError extends MoneyChangeProblem{
     /**
      * Boolèen gérant toutes les conditions d'élagages
      */
-    public static boolean avecConditionElagage = true;
+    public static boolean conditionElagage = true;
+
+    /**
+     * Boolèen gérant la condition d'élagage interditDuplicat
+     */
+    public static boolean conditionElagageInterditDuplicat = true;
+
+    /**
+     * Boolèen gérant la condition d'élagage encorePossible
+     */
+    public static boolean conditionElagageEncorePossible = true;
+
+    /**
+     * Boolèen gérant la condition d'élagage evaluation
+     */
+    public static boolean conditionElagageEvaluation = true;
+
+    /**
+     * Boolèen gérant la condition d'élagage evaluationCheminSolutionOptimale
+     */
+    public static boolean conditionElagageEvaluationCheminSolutionOptimale = true;
+
+    /**
+     * Boolèen gérant toutes les conditions d'élagages evaluationCheminEstimationSolutionOptimale
+     */
+    public static boolean conditionElagageEvaluationCheminEstimationSolutionOptimale = true;
+
+    /**
+     * Boolèen gérant l'activation du constituant meilleur
+     */
+    public static boolean conditionMeilleur = true;
+
 
     public TrialAndError(Pieces inC){
         this.C = inC;
@@ -46,7 +77,7 @@ public class TrialAndError extends MoneyChangeProblem{
      * @return
      */
     public boolean encorePossible(Solution solutionActuelle, double montant, int from){
-        if(solutionActuelle.getMontant() + solutionActuelle.C.getMin(from) > montant){
+        if(conditionElagageEncorePossible && conditionElagage && (solutionActuelle.getMontant() + solutionActuelle.C.getMin(from) > montant)){
             return false;
         }
         return true;
@@ -59,7 +90,7 @@ public class TrialAndError extends MoneyChangeProblem{
      * @return
      */
     public boolean evaluation(Solution solutionActuelle){
-        if(solutionActuelle.getNbPieces() > solOpt.getNbPieces()){
+        if(conditionElagageEvaluation && conditionElagage &&(solutionActuelle.getNbPieces() > solOpt.getNbPieces())){
             return false;
         }
         return true;
@@ -76,7 +107,7 @@ public class TrialAndError extends MoneyChangeProblem{
         int nbPiecesRestantes = (solOpt.getNbPieces() - solutionActuelle.getNbPieces());
         int valeurPieceMax = solutionActuelle.C.getMax(from);
 
-        if(nbPiecesRestantes < 0 || (solutionActuelle.getMontant() + nbPiecesRestantes*valeurPieceMax < montant && solOptFound)){ //On ne regarde ce critère que si la solution optimale existe déja
+        if(conditionElagageEvaluationCheminSolutionOptimale && conditionElagage && (nbPiecesRestantes < 0 || (solutionActuelle.getMontant() + nbPiecesRestantes*valeurPieceMax < montant && solOptFound))){ //On ne regarde ce critère que si la solution optimale existe déja
             return false;
         }
         return true;
@@ -95,7 +126,7 @@ public class TrialAndError extends MoneyChangeProblem{
         int valeurPieceMax = this.C.getMax(from);
         int majorationNbPieceOptimale = approximationNbPieceGreedy(montant); //Choix du majorant, Donne le nombre de pièce pour un montant donné selon la méthode gloutonne
         int nbPiecesRestantes = majorationNbPieceOptimale-solutionActuelle.getNbPieces(); //Degrée de liberté de pièce pour espérer faire mieux que la solution gloutonne
-        if(nbPiecesRestantes < 0 || solutionActuelle.getMontant() + nbPiecesRestantes*valeurPieceMax < montant){
+        if(conditionElagageEvaluationCheminEstimationSolutionOptimale && conditionElagage && (nbPiecesRestantes < 0 || solutionActuelle.getMontant() + nbPiecesRestantes*valeurPieceMax < montant)){
             return false;
         }
         return true;
@@ -157,6 +188,11 @@ public class TrialAndError extends MoneyChangeProblem{
         //Initialisation de variable
         double montantActuel = solutionActuel.getMontant();
 
+        //Pour enlever interditDuplicat
+        if(!conditionElagageInterditDuplicat || !conditionElagage){
+            from = 0;
+        }
+
         for(int i = from; i < getTailleEnsemblePiece(); i++){ //on va travailler avec des tableaux de plus en plus petit pour éviter les transpositions, pour
             double ajout = this.C.ensemblePieces.get(i);
             if(satisfaisant(montantActuel, ajout, montant) && evaluation(solutionActuel)){ //satisfaisant
@@ -166,11 +202,16 @@ public class TrialAndError extends MoneyChangeProblem{
 
 
                 if(montantActuel == montant){ //soltrouvé
-                    if(meilleur(solutionActuel)){
-                        solOptFound = true; //Une première solution optimale local a été trouvé
-                        if(displayResult) {
-                            solutionActuel.afficheResultat();
+                    if(conditionMeilleur) {
+                        if (meilleur(solutionActuel)) {
+                            solOptFound = true; //Une première solution optimale local a été trouvé
+                            if (displayResult) {
+                                solutionActuel.afficheResultat();
+                            }
                         }
+                    }else{
+                        solOpt = solutionActuel;
+                        solOptFound = true;
                     }
 
                 } else if(encorePossible(solutionActuel, montant, from)) { //condition d'élagage
@@ -210,9 +251,17 @@ public class TrialAndError extends MoneyChangeProblem{
     public static void main(String[] args) {
         Pieces euro = new Euros();
         euro.initDecroissant();
+        conditionElagage = true;
+
+        conditionElagageInterditDuplicat = false;
+        conditionElagageEvaluation = false;
+        conditionElagageEncorePossible = false;
+        conditionElagageEvaluationCheminSolutionOptimale = false;
+        conditionElagageEvaluationCheminEstimationSolutionOptimale = false;
+
         euro.afficheValeur();
         TrialAndError test = new TrialAndError(euro);
-        test.solveProblem(157453);
+        test.solveProblem(7453);
         System.out.println("nb de tour :"+test.nbTour);
     }
 }
