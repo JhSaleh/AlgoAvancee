@@ -19,7 +19,7 @@ public class TrialAndErrorTest extends Test {
     /**
      * Désigne le nombre de tests dans le cas sans élagage
      */
-    public static int nbTestSansElagage = 100;
+    public static int nbTestSansElagage = 36;
 
     /**
      * Va créer un fichier csv qui permettra de grapher les résultats de compléxités plus tard
