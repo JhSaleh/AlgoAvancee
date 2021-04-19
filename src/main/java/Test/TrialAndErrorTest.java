@@ -160,6 +160,7 @@ public class TrialAndErrorTest extends Test {
     public static void main(String[] args) {
         Euros euros = new Euros();
         TrialAndErrorTest test0;
+
         //Test 1
         test0 = new TrialAndErrorTest("Trial&ErrorAvecConditionElagageEnsembleDecroissantNbRecursion");
         test0.complexiteAvecConditionElagage(euros, nbTest, 2);
@@ -203,8 +204,6 @@ public class TrialAndErrorTest extends Test {
 
         //Sans condition d'élagage avec une seule condition activé à la fois
         //Cas décroissant
-        test0 = new TrialAndErrorTest("Trial&ErrorSansConditionElagageEnsembleDecroissantNbRecursionInterditDuplicat");
-        test0.complexiteAvecUneSeuleConditionElagage(euros, TrialAndErrorTest.nbTestSansElagage, 0, 0);
 
         test0 = new TrialAndErrorTest("Trial&ErrorSansConditionElagageEnsembleDecroissantNbRecursionEncorePossible");
         test0.complexiteAvecUneSeuleConditionElagage(euros, TrialAndErrorTest.nbTestSansElagage, 0, 1);
@@ -217,6 +216,10 @@ public class TrialAndErrorTest extends Test {
 
         test0 = new TrialAndErrorTest("Trial&ErrorSansConditionElagageEnsembleDecroissantNbRecursionEvaluationCheminEstimationSolutionOptimale");
         test0.complexiteAvecUneSeuleConditionElagage(euros, TrialAndErrorTest.nbTestSansElagage, 0, 4);
+
+        test0 = new TrialAndErrorTest("Trial&ErrorSansConditionElagageEnsembleDecroissantNbRecursionInterditDuplicat");
+        test0.complexiteAvecUneSeuleConditionElagage(euros, TrialAndErrorTest.nbTestSansElagage, 0, 0);
+
 
         //Cas croissant
         test0 = new TrialAndErrorTest("Trial&ErrorSansConditionElagageEnsembleCroissantNbRecursionInterditDuplicat");
@@ -249,5 +252,6 @@ public class TrialAndErrorTest extends Test {
 
         test0 = new TrialAndErrorTest("Trial&ErrorSansConditionElagageEnsembleQuelconqueNbRecursionEvaluationCheminEstimationSolutionOptimale");
         test0.complexiteAvecUneSeuleConditionElagage(euros, TrialAndErrorTest.nbTestSansElagage, 2, 4);
+
     }
 }

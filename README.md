@@ -87,7 +87,7 @@ La solution est affichée sur le terminal et est recupérée dans l'objet **solu
 
 ## Partie Tests
 Pour vérifier les données des tests,
-dirigez-vous dans le dossier Test/
+dirigez-vous dans le **package** **Test/**
 et sélectionner la classe désirée parmi :
 
 ```
@@ -97,3 +97,4 @@ et sélectionner la classe désirée parmi :
 ```
 
 Et sélectionnez les méthodes désirées pour les exécuter dans un **main**.
+Le résultat des tests est disponible après dans le dossier **test/** en racine de projet. 
