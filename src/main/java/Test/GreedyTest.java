@@ -15,7 +15,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class GreedyTest extends Test {
-    public static int nbTest = 100000;
+    public static int nbTest = 10000;
 
     /**
      * Va créer un fichier csv qui permettra de grapher les résultats de compléxités plus tard
